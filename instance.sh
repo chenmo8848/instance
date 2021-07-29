@@ -1,12 +1,12 @@
 #!/bin/bash
 #==========================================================#
-#	Description: 甲骨文ARM自动申请脚本					   #
-#	Version: 3.2 										   #
-#	Author: 蜘蛛子										   #
-# 	Telegram: https://t.me/Zhizhuzi						   #
-#	Github: https://github.com/ZhizhuziQAQ/instance		   #
-#	Latest Update: Thu 29 Jul 2021 08:47:07 PM CST         #
-#==========================================================#
+#	Description: 甲骨文ARM自动申请脚本					   
+#	Version: 3.2 					  
+#	Author: 蜘蛛子					 
+# 	Telegram: https://t.me/Zhizhuzi			   
+#	Github: https://github.com/ZhizhuziQAQ/instance	   
+#	Latest Update: Thu 29 Jul 2021 08:47:07 PM CST     
+#==========================================================
 #===========================================填写配置区域1====================================================#
 # 0=新建 1=升配 默认为0，即新建实例
 Flag=0
@@ -147,11 +147,15 @@ function CheckInit(){
 		sleep 1
 		echo -e "["$current_time"]" "${Font_SkyBlue}检测待建配置, 配置为${Instance_Name} ${xCPU}c${xRAM}g${Font_Suffix}"
 		sleep 1
+		Msg_success="【甲骨文信息】：${Instance_Name} ${xCPU}c${xRAM}g 开始新建实例"
+		curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_success}"
 	elif [[ $Flag == 1 ]]; then
 		echo -e "["$current_time"]" "${Font_Yellow}启动模式：升级模式${Font_Suffix}"
 		sleep 1
 		echo -e "["$current_time"]" "${Font_Yellow}检测待升配置, 配置为${Instance_Name} ${xCPU}c${xRAM}g${Font_Suffix}"
 		sleep 1
+		Msg_success="【甲骨文信息】：${Instance_Name} ${xCPU}c${xRAM}g 开始升级实例"
+		curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_success}"
 	fi
 }
 #==========================================================================================================#
