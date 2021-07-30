@@ -162,6 +162,7 @@ function CheckInit(){
 CheckInit
 while [[ true ]]; do
 	current_time=`date +"%Y-%m-%d %H:%M:%S"`
+	outcome=500 #防Ctrl+C误报
 	if [[ $Flag == 0 ]]; then
 		echo -e "["$current_time"]" "${Font_SkyBlue}正在尝试新建实例中…………${Font_Suffix}"
 		api_launch > /root/result.json 2>&1
