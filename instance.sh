@@ -1,13 +1,13 @@
 #!/bin/bash
-#==========================================================
-#	Description: 甲骨文ARM自动申请脚本（使用教程在博客）					   
-#	Version: 3.2 					  
-#	Author: 蜘蛛子
-#       Blog：https://www.zhizhuzi.org      
+#==========================================================#
+#	Description: 甲骨文ARM自动申请脚本（使用教程在博客)   	
+#	Version: 3.2 					  	
+#	Author: 蜘蛛子										   
+#   Blog：https://www.zhizhuzi.org      			
 # 	Telegram: https://t.me/Zhizhuzi			   
-#	Github: https://github.com/ZhizhuziQAQ/instance	   
-#	Latest Update: Fri 30 Jul 2021 09:20:55 AM CST    
-#==========================================================
+#	Github: https://github.com/ZhizhuziQAQ/instance	    
+#	Latest Update: Fri 30 Jul 2021 09:20:55 AM CST      
+#==========================================================#
 #===========================================填写配置区域1====================================================#
 # 0=新建 1=升配 默认为0，即新建实例
 Flag=0
@@ -114,6 +114,13 @@ function InstallLOG(){
 		echo > /dev/null
 	fi
 }
+function onCtrlC(){
+    echo -e "["$current_time"]" "${Font_Red}检测到【Ctrl+C】终止命令......${Font_Suffix}";
+    echo -e "["$current_time"]" "${Font_Red}正在终止脚本......${Font_Suffix}";
+    Msg_success="【甲骨文信息】：${Instance_Name} ${xCPU}c${xRAM}g 申请脚本已停止"
+	curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_success}"
+    exit 0
+}
 #==========================================================================================================#
 function InstanceUpate(){
 	current_time=`date +"%Y-%m-%d %H:%M:%S"`
@@ -186,28 +193,28 @@ while [[ true ]]; do
     409)
 		echo -e "["$current_time"]" "实例状态：${Font_Red}Apply conflict${Font_Suffix}, 返回状态：""${Font_Red}${outcome}${Font_Suffix}"  
 		echo -e "["$current_time"]" "实例状态：${Font_Red}Apply conflict${Font_Suffix}, 返回状态：""${Font_Red}${outcome}${Font_Suffix}" >> /root/oci_error.log
-    		Msg_warning="【甲骨文信息】：${Instance_Name}申请脚本停止，返回信息为Apply conflict"
-		curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_warning}"
+    	Msg_error="【甲骨文信息】：${Instance_Name}申请脚本已停止，返回信息为Apply conflict"
+		curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_error}"
 		break
     ;;
     400)
 		echo -e "["$current_time"]" "实例状态：${Font_Red}InvalidParameter or LimitExceed${Font_Suffix}, 返回状态：""${Font_Red}${outcome}${Font_Suffix}"
 		echo -e "["$current_time"]" "实例状态：${Font_Red}InvalidParameter or LimitExceed${Font_Suffix}, 返回状态：""${Font_Red}${outcome}${Font_Suffix}" >> /root/oci_error.log
-		Msg_warning="【甲骨文信息】：${Instance_Name}申请脚本停止，返回信息为InvalidParameter or LimitExceed"
-		curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_warning}"
+		Msg_error="【甲骨文信息】：${Instance_Name}申请脚本已停止，返回信息为InvalidParameter or LimitExceed"
+		curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_error}"
 		break
     ;;
     401)
 		echo -e "["$current_time"]" "实例状态：${Font_Red}NotAuthenticated${Font_Suffix}, 返回状态：""${Font_Red}${outcome}${Font_Suffix}"
 		echo -e "["$current_time"]" "实例状态：${Font_Red}NotAuthenticated${Font_Suffix}, 返回状态：""${Font_Red}${outcome}${Font_Suffix}" >> /root/oci_error.log
-		Msg_warning="【甲骨文信息】：${Instance_Name}申请脚本停止，返回信息为NotAuthenticated"
+		Msg_warning="【甲骨文信息】：${Instance_Name}申请脚本已停止，返回信息为NotAuthenticated"
 		curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_warning}"
 		break
     ;;
     502)
 		echo -e "["$current_time"]" "实例状态：${Font_Red}Bad Gateway${Font_Suffix}, 返回状态：""${Font_Red}${outcome}${Font_Suffix}"
 		echo -e "["$current_time"]" "实例状态：${Font_Red}Bad Gateway${Font_Suffix}, 返回状态：""${Font_Red}${outcome}${Font_Suffix}" >> /root/oci_error.log
-		Msg_warning="【甲骨文信息】：${Instance_Name}申请脚本停止，返回信息为Bad Gateway"
+		Msg_warning="【甲骨文信息】：${Instance_Name}申请脚本已停止，返回信息为Bad Gateway"
 		curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_warning}"
 		break
     ;;
