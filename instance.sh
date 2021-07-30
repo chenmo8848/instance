@@ -159,6 +159,7 @@ function CheckInit(){
 		sleep 1
 		Msg_success="【甲骨文信息】：${Instance_Name} ${xCPU}c${xRAM}g 开始新建实例"
 		curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_success}"
+		echo -e "\n"
 	elif [[ $Flag == 1 ]]; then
 		echo -e "["$current_time"]" "${Font_Yellow}启动模式：升级模式${Font_Suffix}"
 		sleep 1
@@ -166,6 +167,7 @@ function CheckInit(){
 		sleep 1
 		Msg_success="【甲骨文信息】：${Instance_Name} ${xCPU}c${xRAM}g 开始升级实例"
 		curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_success}"
+		echo -e "\n"
 	fi
 }
 #==========================================================================================================#
@@ -226,11 +228,13 @@ while [[ true ]]; do
 			echo -e "["$current_time"]" "${Font_SkyBlue}${Instance_Name} ${xCPU}c${xRAM}g 成功新建实例，正在发起通知…………${Font_Suffix}" >> /root/success/success.log
 			Msg_success="【甲骨文信息】：${Instance_Name} ${xCPU}c${xRAM}g 新建实例成功"
 			curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_success}"
+			echo -e "\n"
 		elif [[ $Flag == 1 ]]; then
 			echo -e "["$current_time"]" "${Font_Yellow}${Instance_Name} ${xCPU}c${xRAM}g 成功升级实例，正在发起通知…………${Font_Suffix}"
 			echo -e "["$current_time"]" "${Font_Yellow}${Instance_Name} ${xCPU}c${xRAM}g 成功升级实例，正在发起通知…………${Font_Suffix}" >> /root/success/success.log
 			Msg_success="【甲骨文信息】：${Instance_Name} ${xCPU}c${xRAM}g 实例升级成功"
 			curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_success}"
+			echo -e "\n"
 		fi
 		sleep 30
 		break
