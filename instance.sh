@@ -4,7 +4,7 @@ trap 'onCtrlC' INT
 #	Description: 甲骨文ARM自动申请脚本（使用教程在博客)   	
 #	Version: 3.2 					  				
 #	Author: 蜘蛛子									
-#   Blog：https://www.zhizhuzi.org      				   
+#       Blog：https://www.zhizhuzi.org      				   
 # 	Telegram: https://t.me/Zhizhuzi			            
 #	Github: https://github.com/ZhizhuziQAQ/instance	     
 #	Latest Update: Fri 30 Jul 2021 09:20:55 AM CST         
@@ -116,11 +116,11 @@ function InstallLOG(){
 	fi
 }
 function onCtrlC(){
-	current_time=`date +"%Y-%m-%d %H:%M:%S"`
-    echo -e "["$current_time"]" "${Font_Red}检测到【Ctrl+C】终止命令......${Font_Suffix}";
-    echo -e "["$current_time"]" "${Font_Red}正在终止脚本......${Font_Suffix}";
+    current_time=`date +"%Y-%m-%d %H:%M:%S"`
+    echo -e "["$current_time"]" "${Font_Red}检测到【Ctrl+C】终止命令......${Font_Suffix}"
+    echo -e "["$current_time"]" "${Font_Red}正在终止脚本......${Font_Suffix}"
     Msg_success="【甲骨文信息】：${Instance_Name} ${xCPU}c${xRAM}g 申请脚本已停止"
-	curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_success}"
+    curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_success}"
     exit 0
 }
 #==========================================================================================================#
