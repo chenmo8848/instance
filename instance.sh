@@ -2,7 +2,8 @@
 #==========================================================
 #	Description: 甲骨文ARM自动申请脚本					   
 #	Version: 3.2 					  
-#	Author: 蜘蛛子					 
+#	Author: 蜘蛛子
+#       Blog：https://www.zhizhuzi.org      使用教程在博客
 # 	Telegram: https://t.me/Zhizhuzi			   
 #	Github: https://github.com/ZhizhuziQAQ/instance	   
 #	Latest Update: Fri 30 Jul 2021 09:20:55 AM CST    
