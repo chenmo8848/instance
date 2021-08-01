@@ -252,6 +252,7 @@ while [[ true ]]; do
 			curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_success}"
 			echo -e "\n"
 		fi
+		cp /root/result.json /root/success
 		sleep 30
 		break
 		exit 0
