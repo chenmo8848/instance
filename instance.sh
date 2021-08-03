@@ -4,7 +4,7 @@ trap 'onCtrlC' INT
 #	Description: 甲骨文ARM自动申请脚本（使用教程在博客)   	
 #	Version: 3.2 					  				
 #	Author: 蜘蛛子									
-#       Blog：https://www.zhizhuzi.org      				   
+#   Blog：https://www.zhizhuzi.org      				   
 # 	Telegram: https://t.me/Zhizhuzi			            
 #	Github: https://github.com/ZhizhuziQAQ/instance	     
 #	Latest Update: Fri 30 Jul 2021 09:20:55 AM CST         
@@ -202,6 +202,13 @@ while [[ true ]]; do
     	Msg_error="【甲骨文信息】：${Instance_Name}申请脚本已停止，返回信息为Apply conflict"
 		curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_error}"
 		break
+    ;;
+    404)
+		echo -e "["$current_time"]" "实例状态：${Font_Red}InvalidParameter or LimitExceed${Font_Suffix}, 返回状态：""${Font_Red}${outcome}${Font_Suffix}"
+		echo -e "["$current_time"]" "实例状态：${Font_Red}InvalidParameter or LimitExceed${Font_Suffix}, 返回状态：""${Font_Red}${outcome}${Font_Suffix}" >> /root/oci_error.log
+		Msg_error="【甲骨文信息】：${Instance_Name}申请脚本已停止，返回信息为InvalidParameter or LimitExceed"
+		curl -s -X POST $URL -d chat_id=${CHAT_ID} -d text="${Msg_error}"
+		break	
     ;;
     401)
 		echo -e "["$current_time"]" "实例状态：${Font_Red}InvalidParameter or LimitExceed${Font_Suffix}, 返回状态：""${Font_Red}${outcome}${Font_Suffix}"
